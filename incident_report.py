@@ -1,27 +1,23 @@
-# incident_report.py - T7A starter
-# Calculates downtime totals for warehouse incidents (Operations Problem Navigator).
-# Heads up: this code is repetitive AND has bugs. That's on purpose.
 
-north_dc = [45, 30, 120, 15]   # downtime minutes per incident
+
+
+
+
+
+north_dc = [45, 30, 120, 15]
 south_dc = [60, 10, 25]
-
-total = 0
-for m in north_dc:
-    total = total + m
-print("North DC total downtime:", total)
-
-total = 0
-for m in north_dc:
-    total = total + m
-print("West DC total downtime:", total)
-
-total = 0
-for m in south_dc:
-    total = total + m
-print("South DC total downtime:", total)
-
-print("Most recent North DC incident:", north_dc[4])
-
-new_minutes = int(input("Log a new North DC incident (minutes): "))
+def calculate_total(incidents):
+    total_minutes = 0
+    for minutes in incidents:
+        total_minutes += minutes
+    return total_minutes
+print("North DC total downtime:", calculate_total(north_dc))
+print("South DC total downtime:", calculate_total(south_dc))
+print("Most recent North DC incident:", north_dc[-1])
+raw = input("Enter new North DC downtime (minutes): ")
+try:
+    new_minutes = int(raw)
+except ValueError:
+    print("Please enter a whole number, like 30.")
 north_dc.append(new_minutes)
-print("New North DC total:", sum(north_dc))
+print("Updated North DC total:", calculate_total(north_dc))
