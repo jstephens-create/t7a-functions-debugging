@@ -15,9 +15,15 @@ print("North DC total downtime:", calculate_total(north_dc))
 print("South DC total downtime:", calculate_total(south_dc))
 print("Most recent North DC incident:", north_dc[-1])
 raw = input("Enter new North DC downtime (minutes): ")
+
 try:
     new_minutes = int(raw)
 except ValueError:
     print("Please enter a whole number, like 30.")
+else:
+    north_dc.append(new_minutes)
+    print("Updated North DC total:", calculate_total(north_dc))
+
+
 north_dc.append(new_minutes)
 print("Updated North DC total:", calculate_total(north_dc))
